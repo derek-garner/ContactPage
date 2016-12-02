@@ -30,7 +30,7 @@ app.post('/', function (req, res) {
   var mailOpts, smtpTrans;
   //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
   smtpTrans = nodemailer.createTransport('SMTP', {
-      service: 'CS2610ContactPage@gmail.com',
+      service: 'Gmail',
       auth: {
           user: "CS2610ContactPage@gmail.com",
           pass: "USUROCKS69" 
@@ -39,7 +39,7 @@ app.post('/', function (req, res) {
   //Mail options
   mailOpts = {
       from: req.body.firstname + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
-      to: 'derekgarner@aggiemail.usu.edu',
+      to: 'derek.garner@aggiemail.usu.edu',
       subject: 'Website contact form',
       text: 'I would like some cool-aid!'
    
@@ -50,12 +50,12 @@ app.post('/', function (req, res) {
      console.log(req.body.email);
       console.log(req.body.confirmEmail);
   smtpTrans.sendMail(mailOpts, function (error, response) {
-      //Email not sent
+      //Error causing email not to send
       if (error) {
-           console.log("error");
+           console.log('error');
           res.render('index', { title: 'ShadyCult', msg: 'Error occured, message not sent.', err: true, page: 'index' })
       }
-      //Yay!! Email sent
+      //Success
       else {
            console.log("success");
           res.render('index', { title: 'ShadyCult', msg: 'Message sent! Thank you.', err: false, page: 'index' })
