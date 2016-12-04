@@ -28,7 +28,6 @@ app.get('/',function(req,res){
 app.post('/', function (req, res) {
    // console.log("inside post");
   var mailOpts, smtpTrans;
-  //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
   smtpTrans = nodemailer.createTransport('SMTP', {
       service: 'Gmail',
       auth: {
